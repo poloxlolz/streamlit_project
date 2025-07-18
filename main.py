@@ -6,6 +6,7 @@ from helper_functions.utility import check_password
 # from helper_functions import llm
 from logics.customer_query_handler import process_user_message
 
+# New comment
 
 # region <--------- Streamlit App Configuration --------->
 st.set_page_config(
