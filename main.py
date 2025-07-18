@@ -38,6 +38,6 @@ if form.form_submit_button("Submit"):
 
     st.divider()
 
-    print(course_details)
+    print(response)
     df = pd.DataFrame(course_details)
     df 

@@ -107,7 +107,7 @@ def generate_response_based_on_course_details(user_message, product_details):
     Step 2:{delimiter} <step 2 reasoning>
     Step 3:{delimiter} <step 3 response to customer>
 
-    Make sure to include {delimiter} to separate every step.
+    Make sure to include {delimiter} to separate every step. Do not put delimiter at the end.
     """
 
     messages =  [
@@ -118,8 +118,10 @@ def generate_response_based_on_course_details(user_message, product_details):
     ]
 
     response_to_customer = llm.get_completion_by_messages(messages)
-    response_to_customer = response_to_customer.split(delimiter)[-1]
-    return response_to_customer
+    response_to_customer_s = response_to_customer.split(delimiter)[-1]
+    if not response_to_customer_s:
+        response_to_customer_s = response_to_customer.split(delimiter)[-2]
+    return response_to_customer_s
 
 
 def process_user_message(user_input):
@@ -135,5 +137,6 @@ def process_user_message(user_input):
     # Process 3: Generate Response based on Course Details
     reply = generate_response_based_on_course_details(user_input, course_details)
 
+    # Return the reply
 
     return reply, course_details
